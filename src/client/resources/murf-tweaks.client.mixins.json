@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.murfgames.murftweaks.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "LivingEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "EquippableComponentMixin"
+  ]
+}
