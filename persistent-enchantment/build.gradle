@@ -1,0 +1,41 @@
+evaluationDependsOn(":common")
+
+fabricApi {
+    configureDataGeneration {
+        client = true
+    }
+}
+
+sourceSets {
+    client {
+
+        // add common's client compiled classes+resources to this module's client compile/runtime classpath
+        compileClasspath += project(":common").sourceSets.client.output
+        runtimeClasspath += project(":common").sourceSets.client.output
+    }
+}
+
+configurations {
+    namedElements {
+        canBeConsumed = true
+        canBeResolved = false
+        extendsFrom configurations.implementation
+    }
+    clientNamedElements {
+        canBeConsumed = true
+        canBeResolved = false
+        extendsFrom configurations.implementation
+    }
+}
+
+artifacts {
+    namedElements jar
+    clientNamedElements jar
+}
+
+dependencies {
+    implementation project(path: ":common", configuration: "namedElements")
+    clientImplementation project(":common").sourceSets.client.output
+
+    include project(":common")
+}

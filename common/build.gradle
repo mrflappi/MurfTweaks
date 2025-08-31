@@ -1,0 +1,29 @@
+sourceSets {
+    // create client source set for client-only helpers
+    client {
+        java {
+            srcDir("src/client/java")
+        }
+        resources {
+            srcDir("src/client/resources")
+        }
+    }
+}
+
+configurations {
+    namedElements {
+        canBeConsumed = true
+        canBeResolved = false
+        extendsFrom configurations.implementation
+    }
+    clientNamedElements {
+        canBeConsumed = true
+        canBeResolved = false
+        extendsFrom configurations.implementation
+    }
+}
+
+artifacts {
+    namedElements jar
+    clientNamedElements jar
+}

@@ -1,0 +1,41 @@
+evaluationDependsOn(":common")
+evaluationDependsOn(":persistent-enchantment")
+
+fabricApi {
+    configureDataGeneration {
+        client = true
+    }
+}
+
+loom {
+    runs {
+        client {
+            // Only run murf-tweaks itself
+            ideConfigGenerated true
+            runDir "run"
+        }
+    }
+}
+
+sourceSets {
+    client {
+        // add common's client compiled classes+resources to this module's client compile/runtime classpath
+        compileClasspath += project(":common").sourceSets.client.output
+        runtimeClasspath += project(":common").sourceSets.client.output
+
+        compileClasspath += project(":persistent-enchantment").sourceSets.client.output
+        runtimeClasspath += project(":persistent-enchantment").sourceSets.client.output
+    }
+}
+
+dependencies {
+    // Bundle common
+    implementation project(path: ":common", configuration: "namedElements")
+    include project(path: ":common", configuration: "namedElements")
+    clientImplementation project(path: ":common", configuration: "clientNamedElements")
+
+    // Bundle persistent-enchantment
+    implementation project(path: ":persistent-enchantment", configuration: "namedElements")
+    include project(path: ":persistent-enchantment", configuration: "namedElements")
+    clientImplementation project(path: ":persistent-enchantment", configuration: "clientNamedElements")
+}

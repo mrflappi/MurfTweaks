@@ -1,10 +1,16 @@
 pluginManagement {
-	repositories {
-		maven {
-			name = 'Fabric'
-			url = 'https://maven.fabricmc.net/'
-		}
-		mavenCentral()
-		gradlePluginPortal()
-	}
+    repositories {
+        maven {
+            name = "Fabric"
+            url = "https://maven.fabricmc.net/"
+        }
+        gradlePluginPortal()
+        mavenCentral()
+    }
 }
+
+rootProject.name = "murf-tweaks"
+
+include("murf-tweaks")
+include("common")
+include ("persistent-enchantment")
