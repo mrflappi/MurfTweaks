@@ -15,8 +15,11 @@
 	"icon": "assets/murf-tweaks/icon.png",
 	"environment": "*",
 	"entrypoints": {
+        "main": [
+          "net.murfgames.murftweaks.MurfTweaks"
+        ],
 		"preLaunch": [
-          "net.murfgames.murftweaks.MurfTweaksPreLaunch"
+          "net.murfgames.murftweaks.MurfTweaks"
         ]
     },
 	"mixins": [

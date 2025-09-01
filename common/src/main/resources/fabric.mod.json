@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "murf-tweaks-common",
-  "version": "cmn",
+  "version": "${version}",
   "name": "Murf Tweaks Common",
   "description": "Common library for Murf Tweaks",
   "authors": [

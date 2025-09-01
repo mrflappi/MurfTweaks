@@ -14,6 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.murfgames.murftweaks.common.MurfTweaksCommon;
 import net.murfgames.murftweaks.persistentenchantment.enchantment.EnchantmentTags;
 import net.murfgames.murftweaks.persistentenchantment.enchantment.PersistentHelper;
 import net.murfgames.murftweaks.persistentenchantment.mixinhelper.ItemStackExtender;

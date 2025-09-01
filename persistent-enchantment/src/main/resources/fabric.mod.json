@@ -15,8 +15,11 @@
 	"icon": "assets/murf-tweaks/icon.png",
 	"environment": "*",
 	"entrypoints": {
+        "main": [
+          "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule"
+        ],
 		"preLaunch": [
-          "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentPreLaunch"
+          "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule"
         ]
     },
 	"mixins": [
