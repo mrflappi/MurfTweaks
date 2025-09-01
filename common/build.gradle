@@ -23,7 +23,12 @@ configurations {
     }
 }
 
+tasks.register('clientJar', Jar) {
+    archiveClassifier.set("client")
+    from sourceSets.client.output
+}
+
 artifacts {
     namedElements jar
-    clientNamedElements jar
+    clientNamedElements clientJar
 }

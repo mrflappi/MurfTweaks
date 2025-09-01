@@ -15,7 +15,7 @@ public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEnt
 
     @Override
     public void onInitialize() {
-
+        ServerHandshake.register();
     }
 
     @Override

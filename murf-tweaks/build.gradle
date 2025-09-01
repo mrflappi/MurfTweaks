@@ -7,35 +7,87 @@ fabricApi {
     }
 }
 
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+tasks.register('modifyJson') {
+    doNotTrackState("Modifies JSON in build directory after resources are copied")
+
+    doLast {
+        def fabricModJson = file("$buildDir/resources/main/fabric.mod.json")
+
+        if (!fabricModJson.exists()) {
+            println "JSON file does not exist!"
+            return
+        }
+
+        // Read JSON
+        def json = new JsonSlurper().parse(fabricModJson)
+        json.mixins << "persistent-enchantment.mixins.json"
+        json.mixins << [
+                config: "persistent-enchantment.client.mixins.json",
+                environment: "client"
+        ]
+
+        // Write back JSON
+        fabricModJson.text = JsonOutput.prettyPrint(JsonOutput.toJson(json))
+        println "Modified JSON file!"
+    }
+}
+
 loom {
     runs {
         client {
-            // Only run murf-tweaks itself
             ideConfigGenerated true
             runDir "run"
+        }
+    }
+
+    jar {
+        dependsOn tasks.named("processResources")   // ensure resources are copied first
+        dependsOn tasks.named("modifyJson")
+
+        // Include common classes/resources but exclude its fabric.mod.json
+        from(project(":common").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":common").sourceSets.client.output) {
+            exclude("fabric.mod.json")
+        }
+
+        // Include persistent-enchantment classes/resources but exclude its fabric.mod.json
+        from(project(":persistent-enchantment").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":persistent-enchantment").sourceSets.client.output) {
+            exclude("fabric.mod.json")
         }
     }
 }
 
 sourceSets {
+    main {
+        compileClasspath += project(":common").sourceSets.main.output
+        runtimeClasspath += project(":common").sourceSets.main.output
+
+        compileClasspath += project(":persistent-enchantment").sourceSets.main.output
+        runtimeClasspath += project(":persistent-enchantment").sourceSets.main.output
+    }
     client {
-        // add common's client compiled classes+resources to this module's client compile/runtime classpath
+        compileClasspath += project(":common").sourceSets.main.output
+        runtimeClasspath += project(":common").sourceSets.main.output
         compileClasspath += project(":common").sourceSets.client.output
         runtimeClasspath += project(":common").sourceSets.client.output
 
+        compileClasspath += project(":persistent-enchantment").sourceSets.main.output
+        runtimeClasspath += project(":persistent-enchantment").sourceSets.main.output
         compileClasspath += project(":persistent-enchantment").sourceSets.client.output
         runtimeClasspath += project(":persistent-enchantment").sourceSets.client.output
     }
 }
 
 dependencies {
-    // Bundle common
+    // Only include the classes/resources, not their mod metadata
     implementation project(path: ":common", configuration: "namedElements")
-    include project(path: ":common", configuration: "namedElements")
-    clientImplementation project(path: ":common", configuration: "clientNamedElements")
-
-    // Bundle persistent-enchantment
     implementation project(path: ":persistent-enchantment", configuration: "namedElements")
-    include project(path: ":persistent-enchantment", configuration: "namedElements")
-    clientImplementation project(path: ":persistent-enchantment", configuration: "clientNamedElements")
 }

@@ -15,7 +15,7 @@ public class MurfTweaks implements ModInitializer, PreLaunchEntrypoint, MurfTwea
 
     @Override
     public void onInitialize() {
-
+        ServerHandshake.register();
     }
 
     @Override

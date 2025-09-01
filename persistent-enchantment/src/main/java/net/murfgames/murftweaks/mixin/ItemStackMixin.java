@@ -1,4 +1,4 @@
-package net.murfgames.murftweaks.persistentenchantment.mixin;
+package net.murfgames.murftweaks.mixin;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;

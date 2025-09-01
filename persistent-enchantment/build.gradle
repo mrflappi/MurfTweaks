@@ -6,10 +6,34 @@ fabricApi {
     }
 }
 
-sourceSets {
-    client {
+loom {
+    runs {
+        client {
+            // Only run murf-tweaks itself
+            ideConfigGenerated true
+            runDir "run"
+        }
+    }
 
-        // add common's client compiled classes+resources to this module's client compile/runtime classpath
+    jar {
+        // Include common classes/resources but exclude its fabric.mod.json
+        from(project(":common").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":common").sourceSets.client.output) {
+            exclude("fabric.mod.json")
+        }
+    }
+}
+
+sourceSets {
+    main {
+        compileClasspath += project(":common").sourceSets.main.output
+        runtimeClasspath += project(":common").sourceSets.main.output
+    }
+    client {
+        compileClasspath += project(":common").sourceSets.main.output
+        runtimeClasspath += project(":common").sourceSets.main.output
         compileClasspath += project(":common").sourceSets.client.output
         runtimeClasspath += project(":common").sourceSets.client.output
     }
@@ -35,7 +59,5 @@ artifacts {
 
 dependencies {
     implementation project(path: ":common", configuration: "namedElements")
-    clientImplementation project(":common").sourceSets.client.output
-
-    include project(":common")
+    implementation project(path: ":common", configuration: "clientNamedElements")
 }

@@ -1,4 +1,4 @@
-package net.murfgames.murftweaks.persistentenchantment.mixin.client;
+package net.murfgames.murftweaks.mixin.client;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

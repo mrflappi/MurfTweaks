@@ -1,4 +1,4 @@
-package net.murfgames.murftweaks.persistentenchantment.mixin;
+package net.murfgames.murftweaks.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.player.PlayerEntity;
