@@ -18,6 +18,9 @@
         "main": [
           "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule"
         ],
+        "client": [
+          "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentClient"
+        ],
 		"preLaunch": [
           "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule"
         ]

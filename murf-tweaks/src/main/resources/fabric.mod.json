@@ -20,6 +20,9 @@
         ],
         "client": [
             "net.murfgames.murftweaks.MurfTweaksClient"
+        ],
+        "preLaunch": [
+            "net.murfgames.murftweaks.MurfTweaks"
         ]
     },
     "mixins": [

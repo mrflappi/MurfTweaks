@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.murfgames.murftweaks.mixin",
+  "package": "net.murfgames.murftweaks.persistentenchantment.mixin",
   "refmap": "murf-tweaks-persistent-enchantment-refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
