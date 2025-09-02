@@ -2,9 +2,6 @@ package net.murfgames.murftweaks.snowsettings;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
-import net.minecraft.block.BlockKeys;
-import net.minecraft.block.SnowBlock;
-import net.minecraft.block.SnowyBlock;
 import net.minecraft.util.Identifier;
 import net.murfgames.bibliomurf.BiblioModule;
 import org.slf4j.Logger;
@@ -19,7 +16,7 @@ public class SnowSettingsModule implements ModInitializer, PreLaunchEntrypoint, 
 
     @Override
     public void onInitialize() {
-
+        SnowHelper.registerReload();
     }
 
     @Override
