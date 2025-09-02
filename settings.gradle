@@ -12,5 +12,5 @@ pluginManagement {
 rootProject.name = "murf-tweaks"
 
 include("murf-tweaks")
-include("common")
-include ("persistent-enchantment")
+include("persistent-enchantment")
+include("snow-settings")

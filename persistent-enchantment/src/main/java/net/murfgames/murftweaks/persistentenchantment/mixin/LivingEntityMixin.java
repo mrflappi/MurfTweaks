@@ -7,7 +7,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.murfgames.murftweaks.common.handshake.ServerHandshake;
+import net.murfgames.bibliomurf.handshake.ServerHandshake;
+import net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule;
 import net.murfgames.murftweaks.persistentenchantment.mixinhelper.ItemStackExtender;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +24,7 @@ public abstract class LivingEntityMixin {
 
         boolean isOnClient = false;
         if (entity instanceof ServerPlayerEntity player)
-            isOnClient = ServerHandshake.hasMod(player);
+            isOnClient = ServerHandshake.playerHasModule(PersistentEnchantmentModule.MODULE_ID, player);
 
         if ((entity.getWorld().isClient() || isOnClient) && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
             cir.setReturnValue(false);

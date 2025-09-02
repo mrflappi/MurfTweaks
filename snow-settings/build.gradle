@@ -2,7 +2,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "persistent-enchantment" {
+        "snow-settings" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }

@@ -5,7 +5,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
-import net.murfgames.murftweaks.common.handshake.ServerHandshake;
+import net.murfgames.bibliomurf.handshake.ServerHandshake;
+import net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule;
 import net.murfgames.murftweaks.persistentenchantment.mixinhelper.ItemStackExtender;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +20,7 @@ public abstract class EquippableComponentMixin {
     private void inject_equip(ItemStack stack, PlayerEntity player, CallbackInfoReturnable<ActionResult> cir) {
         boolean isOnClient = false;
         if (player instanceof ServerPlayerEntity serverPlayer)
-            isOnClient = ServerHandshake.hasMod(serverPlayer);
+            isOnClient = ServerHandshake.playerHasModule(PersistentEnchantmentModule.MODULE_ID, serverPlayer);
 
         if (isOnClient && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
             cir.setReturnValue(ActionResult.PASS);

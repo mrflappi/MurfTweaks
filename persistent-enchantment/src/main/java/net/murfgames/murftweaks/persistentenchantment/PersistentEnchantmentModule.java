@@ -2,24 +2,31 @@ package net.murfgames.murftweaks.persistentenchantment;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
-import net.murfgames.murftweaks.common.MurfTweaksCommon;
-import net.murfgames.murftweaks.common.MurfTweaksModule;
-import net.murfgames.murftweaks.common.handshake.ServerHandshake;
+import net.minecraft.util.Identifier;
+import net.murfgames.bibliomurf.BiblioModule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEntrypoint, MurfTweaksModule {
 
-    @Override
-    public void onPreLaunch() {
-        MurfTweaksCommon.registerModule(new PersistentEnchantmentModule());
-    }
+public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEntrypoint, BiblioModule {
+
+    public static final String PACKAGE_ID = "murf-tweaks";
+    public static final String MOD_ID = "persistent-enchantment";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final Identifier MODULE_ID = Identifier.of(PACKAGE_ID, MOD_ID);
 
     @Override
     public void onInitialize() {
-        ServerHandshake.register();
+
     }
 
     @Override
-    public void onMurfInitialize() {
-        MurfTweaksCommon.LOGGER.info("Persistent Enchantment is present");
+    public void onPreLaunch() {
+        registerModule();
+    }
+
+    @Override
+    public Identifier getID() {
+        return MODULE_ID;
     }
 }

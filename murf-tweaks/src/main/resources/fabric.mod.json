@@ -9,7 +9,7 @@
     ],
     "contact": {
         "homepage": "https://murfgames.itch.io/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "sources": "https://github.com/mrflappi/MurfTweaks"
     },
     "license": "MIT",
     "icon": "assets/murf-tweaks/icon.png",
@@ -18,9 +18,7 @@
         "main": [
             "net.murfgames.murftweaks.MurfTweaks"
         ],
-        "client": [
-            "net.murfgames.murftweaks.MurfTweaksClient"
-        ],
+        "client": [],
         "preLaunch": [
             "net.murfgames.murftweaks.MurfTweaks"
         ]
@@ -36,9 +34,14 @@
         "fabricloader": ">=0.17.2",
         "minecraft": "~1.21.8",
         "java": ">=21",
-        "fabric-api": "*"
+        "fabric-api": "*",
+        "bibliomurf": ">=0.3.0-1.21.8"
     },
     "suggests": {
         "another-mod": "*"
+    },
+    "conflicts": {
+      "persistent-enchantment": "*",
+      "snow-settings": "*"
     }
 }

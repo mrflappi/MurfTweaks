@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "snow-settings",
+	"version": "${version}",
+	"name": "Advanced Snow Settings",
+	"description": "Adds additional settings for falling snow, e.g which blocks they can fall on and if snow can melt.",
+	"authors": [
+		"MurfGames"
+	],
+	"contact": {
+		"homepage": "https://murfgames.itch.io/",
+		"sources": "https://github.com/mrflappi/MurfTweaks"
+	},
+	"license": "MIT",
+	"icon": "assets/murf-tweaks/icon.png",
+	"environment": "*",
+	"entrypoints": {
+        "main": [
+          "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"
+        ],
+		"preLaunch": [
+          "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"
+        ]
+    },
+	"mixins": [
+        "snow-settings.mixins.json",
+        {
+          "config": "snow-settings.client.mixins.json",
+          "environment": "client"
+        }
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*",
+        "bibliomurf": ">=0.3.0-1.21.8"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

@@ -14,9 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.murfgames.murftweaks.common.MurfTweaksCommon;
-import net.murfgames.murftweaks.persistentenchantment.enchantment.EnchantmentTags;
-import net.murfgames.murftweaks.persistentenchantment.enchantment.PersistentHelper;
+import net.murfgames.murftweaks.persistentenchantment.PersistentHelper;
 import net.murfgames.murftweaks.persistentenchantment.mixinhelper.ItemStackExtender;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -38,7 +36,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
         if (stack.isOf(Items.ELYTRA)) return false;
 
         boolean shouldBreak = stack.isDamageable() && stack.getDamage() >= stack.getMaxDamage() - 1;
-        return shouldBreak && EnchantmentHelper.hasAnyEnchantmentsIn(stack, EnchantmentTags.PREVENTS_BREAK);
+        return shouldBreak && EnchantmentHelper.hasAnyEnchantmentsIn(stack, PersistentHelper.PREVENTS_BREAK);
     }
 
     // Sync inventory visual with player after a change
@@ -67,7 +65,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     private void inject_shouldBreak(CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValue()) {
             ItemStack stack = (ItemStack)(Object)this;
-            if (EnchantmentHelper.hasAnyEnchantmentsIn(stack, EnchantmentTags.PREVENTS_BREAK)) {
+            if (EnchantmentHelper.hasAnyEnchantmentsIn(stack, PersistentHelper.PREVENTS_BREAK)) {
                 cir.setReturnValue(false);
             }
         }

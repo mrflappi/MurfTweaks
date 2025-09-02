@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "net.murfgames.murftweaks.snowsettings.mixin.client",
+  "refmap": "client-snow-settings-refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

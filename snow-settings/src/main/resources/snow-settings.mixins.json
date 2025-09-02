@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.murfgames.murftweaks.snowsettings.mixin",
+  "refmap": "snow-settings-refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ServerWorldMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

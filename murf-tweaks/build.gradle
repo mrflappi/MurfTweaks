@@ -1,5 +1,5 @@
-evaluationDependsOn(":common")
 evaluationDependsOn(":persistent-enchantment")
+evaluationDependsOn(":snow-settings")
 
 fabricApi {
     configureDataGeneration {
@@ -13,6 +13,10 @@ import groovy.json.JsonOutput
 tasks.register('modifyJson') {
     doNotTrackState("Modifies JSON in build directory after resources are copied")
 
+    def mainEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"]
+    def clientEntryPoints = []
+    def preLaunchEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"]
+    def mixins = ["persistent-enchantment", "snow-settings"]
     doLast {
         def fabricModJson = file("$buildDir/resources/main/fabric.mod.json")
 
@@ -23,11 +27,26 @@ tasks.register('modifyJson') {
 
         // Read JSON
         def json = new JsonSlurper().parse(fabricModJson)
-        json.mixins << "persistent-enchantment.mixins.json"
-        json.mixins << [
-                config: "persistent-enchantment.client.mixins.json",
-                environment: "client"
-        ]
+
+        for (mixin in mixins) {
+            json.mixins << mixin + ".mixins.json"
+            json.mixins << [
+                    config: mixin + ".client.mixins.json",
+                    environment: "client"
+            ]
+        }
+
+        for (entry in mainEntryPoints) {
+            json.entrypoints.main << entry
+        }
+
+        for (entry in clientEntryPoints) {
+            json.entrypoints.client << entry
+        }
+
+        for (entry in preLaunchEntryPoints) {
+            json.entrypoints.preLaunch << entry
+        }
 
         // Write back JSON
         fabricModJson.text = JsonOutput.prettyPrint(JsonOutput.toJson(json))
@@ -36,10 +55,12 @@ tasks.register('modifyJson') {
 }
 
 loom {
-    runs {
-        client {
-            ideConfigGenerated true
-            runDir "run"
+    splitEnvironmentSourceSets()
+
+    mods {
+        "murf-tweaks" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
         }
     }
 
@@ -47,19 +68,17 @@ loom {
         dependsOn tasks.named("processResources")   // ensure resources are copied first
         dependsOn tasks.named("modifyJson")
 
-        // Include common classes/resources but exclude its fabric.mod.json
-        from(project(":common").sourceSets.main.output) {
-            exclude("fabric.mod.json")
-        }
-        from(project(":common").sourceSets.client.output) {
-            exclude("fabric.mod.json")
-        }
-
-        // Include persistent-enchantment classes/resources but exclude its fabric.mod.json
         from(project(":persistent-enchantment").sourceSets.main.output) {
             exclude("fabric.mod.json")
         }
         from(project(":persistent-enchantment").sourceSets.client.output) {
+            exclude("fabric.mod.json")
+        }
+
+        from(project(":snow-settings").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":snow-settings").sourceSets.client.output) {
             exclude("fabric.mod.json")
         }
     }
@@ -67,27 +86,26 @@ loom {
 
 sourceSets {
     main {
-        compileClasspath += project(":common").sourceSets.main.output
-        runtimeClasspath += project(":common").sourceSets.main.output
-
         compileClasspath += project(":persistent-enchantment").sourceSets.main.output
         runtimeClasspath += project(":persistent-enchantment").sourceSets.main.output
+
+        compileClasspath += project(":snow-settings").sourceSets.main.output
+        runtimeClasspath += project(":snow-settings").sourceSets.main.output
     }
     client {
-        compileClasspath += project(":common").sourceSets.main.output
-        runtimeClasspath += project(":common").sourceSets.main.output
-        compileClasspath += project(":common").sourceSets.client.output
-        runtimeClasspath += project(":common").sourceSets.client.output
-
         compileClasspath += project(":persistent-enchantment").sourceSets.main.output
         runtimeClasspath += project(":persistent-enchantment").sourceSets.main.output
         compileClasspath += project(":persistent-enchantment").sourceSets.client.output
         runtimeClasspath += project(":persistent-enchantment").sourceSets.client.output
+
+        compileClasspath += project(":snow-settings").sourceSets.main.output
+        runtimeClasspath += project(":snow-settings").sourceSets.main.output
+        compileClasspath += project(":snow-settings").sourceSets.client.output
+        runtimeClasspath += project(":snow-settings").sourceSets.client.output
     }
 }
 
 dependencies {
-    // Only include the classes/resources, not their mod metadata
-    implementation project(path: ":common", configuration: "namedElements")
     implementation project(path: ":persistent-enchantment", configuration: "namedElements")
+    implementation project(path: ":snow-settings", configuration: "namedElements")
 }
