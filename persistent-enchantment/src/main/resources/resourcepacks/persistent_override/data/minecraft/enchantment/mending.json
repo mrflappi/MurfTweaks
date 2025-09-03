@@ -1,7 +1,8 @@
 {
   "anvil_cost": 4,
   "description": {
-    "translate": "enchantment.minecraft.mending"
+    "translate": "enchantment.murf-tweaks.persistent",
+    "fallback": "Persistent"
   },
   "max_cost": {
     "base": 75,

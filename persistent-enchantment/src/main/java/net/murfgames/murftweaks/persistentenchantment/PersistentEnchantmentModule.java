@@ -7,7 +7,6 @@ import net.murfgames.bibliomurf.BiblioModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEntrypoint, BiblioModule {
 
     public static final String PACKAGE_ID = "murf-tweaks";
@@ -17,7 +16,7 @@ public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEnt
 
     @Override
     public void onInitialize() {
-
+        PersistentResourcePackLoader.register();
     }
 
     @Override

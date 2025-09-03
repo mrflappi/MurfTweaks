@@ -25,7 +25,6 @@ tasks.register('modifyJson') {
             return
         }
 
-        // Read JSON
         def json = new JsonSlurper().parse(fabricModJson)
 
         for (mixin in mixins) {
@@ -48,7 +47,6 @@ tasks.register('modifyJson') {
             json.entrypoints.preLaunch << entry
         }
 
-        // Write back JSON
         fabricModJson.text = JsonOutput.prettyPrint(JsonOutput.toJson(json))
         println "Modified JSON file!"
     }
@@ -65,7 +63,7 @@ loom {
     }
 
     jar {
-        dependsOn tasks.named("processResources")   // ensure resources are copied first
+        dependsOn tasks.named("processResources")
         dependsOn tasks.named("modifyJson")
 
         from(project(":persistent-enchantment").sourceSets.main.output) {
