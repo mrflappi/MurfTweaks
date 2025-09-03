@@ -16,7 +16,7 @@ public class SnowSettingsModule implements ModInitializer, PreLaunchEntrypoint, 
 
     @Override
     public void onInitialize() {
-        SnowHelper.registerReload();
+        SnowHelper.register();
     }
 
     @Override

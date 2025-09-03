@@ -4,7 +4,8 @@
   "refmap": "snow-settings-refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ServerWorldMixin"
+    "ServerWorldMixin",
+    "SnowBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

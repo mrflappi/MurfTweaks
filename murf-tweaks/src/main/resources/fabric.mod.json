@@ -3,7 +3,7 @@
     "id": "murf-tweaks",
     "version": "${version}",
     "name": "Murf Tweaks",
-    "description": "Custom tweaks I make to my minecraft world",
+    "description": "Custom tweaks I make to my own minecraft world",
     "authors": [
         "MurfGames"
     ],
@@ -12,7 +12,7 @@
         "sources": "https://github.com/mrflappi/MurfTweaks"
     },
     "license": "MIT",
-    "icon": "assets/murf-tweaks/icon.png",
+    "icon": "assets/murf-tweaks/icons/murf-tweaks.png",
     "environment": "*",
     "entrypoints": {
         "main": [
@@ -36,9 +36,6 @@
         "java": ">=21",
         "fabric-api": "*",
         "bibliomurf": ">=0.3.0-1.21.8"
-    },
-    "suggests": {
-        "another-mod": "*"
     },
     "conflicts": {
       "persistent-enchantment": "*",

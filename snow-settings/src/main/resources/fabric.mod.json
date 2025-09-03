@@ -12,7 +12,7 @@
 		"sources": "https://github.com/mrflappi/MurfTweaks"
 	},
 	"license": "MIT",
-	"icon": "assets/murf-tweaks/icon.png",
+	"icon": "assets/murf-tweaks/icons/snow-settings.png",
 	"environment": "*",
 	"entrypoints": {
         "main": [
@@ -35,8 +35,5 @@
 		"java": ">=21",
 		"fabric-api": "*",
         "bibliomurf": ">=0.3.0-1.21.8"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
