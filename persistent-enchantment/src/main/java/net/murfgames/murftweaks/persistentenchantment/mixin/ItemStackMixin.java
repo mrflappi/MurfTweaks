@@ -51,11 +51,13 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     private void inject_inventoryTick(World world, Entity entity, EquipmentSlot slot, CallbackInfo ci) {
         if (world != null && slot != null) {
             ItemStack stack = (ItemStack) (Object) this;
+
             if (!world.isClient() && murf_tweaks$isPersistentBroken() && entity instanceof LivingEntity livingEntity && slot.isArmorSlot()) {
-                livingEntity.giveOrDropStack(stack);
+                ItemStack newStack = stack.copyAndEmpty();
+                livingEntity.giveOrDropStack(newStack);
 
                 if (livingEntity instanceof ServerPlayerEntity serverPlayer)
-                    serverPlayer.sendEquipmentBreakStatus(stack.getItem(), slot);
+                    serverPlayer.sendEquipmentBreakStatus(newStack.getItem(), slot);
             }
         }
     }
