@@ -1,11 +1,6 @@
 package net.murfgames.murftweaks.snowsettings.mixin;
 
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.data.tag.TagProvider;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.murfgames.murftweaks.snowsettings.SnowHelper;

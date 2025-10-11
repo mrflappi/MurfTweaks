@@ -26,7 +26,7 @@ public abstract class LivingEntityMixin {
         if (entity instanceof ServerPlayerEntity player)
             isOnClient = ServerHandshake.playerHasModule(PersistentEnchantmentModule.MODULE_ID, player);
 
-        if ((entity.getWorld().isClient() || isOnClient) && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
+        if ((entity.getEntityWorld().isClient() || isOnClient) && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
             cir.setReturnValue(false);
         }
     }

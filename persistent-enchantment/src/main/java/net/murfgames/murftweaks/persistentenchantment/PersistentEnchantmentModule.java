@@ -11,6 +11,7 @@ public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEnt
 
     public static final String PACKAGE_ID = "murf-tweaks";
     public static final String MOD_ID = "persistent-enchantment";
+    public static final String MOD_VERSION = "0.1.3";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final Identifier MODULE_ID = Identifier.of(PACKAGE_ID, MOD_ID);
 
@@ -27,5 +28,10 @@ public class PersistentEnchantmentModule implements ModInitializer, PreLaunchEnt
     @Override
     public Identifier getID() {
         return MODULE_ID;
+    }
+
+    @Override
+    public String getVersion() {
+        return MOD_VERSION;
     }
 }

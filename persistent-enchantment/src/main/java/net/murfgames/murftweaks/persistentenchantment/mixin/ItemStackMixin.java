@@ -76,7 +76,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     // Set item damage to minimum with persistent enchantment
     @Inject(method = "damage(ILnet/minecraft/entity/LivingEntity;Lnet/minecraft/entity/EquipmentSlot;)V", at = @At("TAIL"))
     private void inject_damage(int amount, LivingEntity entity, EquipmentSlot slot, CallbackInfo ci) {
-        if (!entity.getWorld().isClient()) {
+        if (!entity.getEntityWorld().isClient()) {
             ItemStack stack = (ItemStack) (Object) this;
             if (murf_tweaks$isPersistentBroken() && stack.getDamage() > stack.getMaxDamage() - PersistentHelper.MIN_DURABILITY) {
                 stack.setDamage(stack.getMaxDamage() - PersistentHelper.MIN_DURABILITY);
@@ -105,7 +105,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     // Prevent broken item from being used on an entity with persistent enchantment
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
     private void inject_useOnEntity(PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        if (!entity.getWorld().isClient() && murf_tweaks$isPersistentBroken()  && Objects.requireNonNull(user.getGameMode()).isSurvivalLike())
+        if (!entity.getEntityWorld().isClient() && murf_tweaks$isPersistentBroken()  && Objects.requireNonNull(user.getGameMode()).isSurvivalLike())
             cir.setReturnValue(ActionResult.PASS);
     }
 

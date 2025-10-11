@@ -18,8 +18,10 @@ public class EquippableComponentMixin {
     @Inject(method = "equip", at = @At("HEAD"), cancellable = true)
     private void inject_equip(ItemStack stack, PlayerEntity player, CallbackInfoReturnable<ActionResult> cir) {
         boolean isOnServer = false;
-        if (player.getWorld().isClient())
+        if (player.getEntityWorld().isClient())
             isOnServer = ClientHandshake.serverHasModule(PersistentEnchantmentModule.MODULE_ID);
+
+        PersistentEnchantmentModule.LOGGER.info(String.valueOf(isOnServer));
 
         if (isOnServer && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
             cir.setReturnValue(ActionResult.PASS);

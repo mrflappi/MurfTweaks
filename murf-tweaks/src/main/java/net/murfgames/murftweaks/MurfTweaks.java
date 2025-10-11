@@ -29,4 +29,9 @@ public class MurfTweaks implements ModInitializer, PreLaunchEntrypoint, BiblioMo
     public Identifier getID() {
         return MODULE_ID;
     }
+
+    @Override
+    public String getVersion() {
+        return "0.1.2";
+    }
 }

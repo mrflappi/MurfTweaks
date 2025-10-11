@@ -19,10 +19,10 @@ public class LivingEntityMixin {
         LivingEntity entity = (LivingEntity)(Object)this;
 
         boolean isOnServer = false;
-        if (entity.getWorld().isClient())
+        if (entity.getEntityWorld().isClient())
             isOnServer = ClientHandshake.serverHasModule(PersistentEnchantmentModule.MODULE_ID);
 
-        if ((entity.getWorld().isClient() || isOnServer) && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
+        if ((entity.getEntityWorld().isClient() || isOnServer) && ((ItemStackExtender)(Object)stack).murf_tweaks$isPersistentBroken()) {
             cir.setReturnValue(false);
         }
     }

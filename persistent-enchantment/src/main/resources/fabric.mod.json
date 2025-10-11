@@ -30,10 +30,10 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.17.2",
-		"minecraft": "~1.21.8",
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.10",
 		"java": ">=21",
 		"fabric-api": "*",
-        "bibliomurf": ">=0.3.0-1.21.8"
+        "bibliomurf": ">=0.4.0-1.21.10"
 	}
 }
