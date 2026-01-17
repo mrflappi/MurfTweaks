@@ -3,12 +3,12 @@
 	"id": "persistent-enchantment",
 	"version": "${version}",
 	"name": "Persistent Enchantment",
-	"description": "Adds a 'Persistent' enchantment which overrides mending - imitates elytra behaviour by making the item unusable at 1 durability, preventing permanent item loss. However, persistent items do not heal from xp, they must still be repaired in an anvil. I suggest downloading a mod which disables anvil price increasing. Part of the MurfTweaks mod",
+	"description": "Adds a 'Persistent' enchantment which overrides mending - imitates elytra behaviour by making the item unusable at 1 durability, preventing permanent item loss. However, persistent items do not heal from xp, they must still be repaired in an anvil. I suggest downloading a mod which disables anvil price increasing.",
 	"authors": [
-		"MurfGames"
+		"Lloyd Archer (Murf Games)"
 	],
 	"contact": {
-		"homepage": "https://murfgames.itch.io/",
+		"homepage": "http://murfgames.co.uk/",
         "sources": "https://github.com/mrflappi/MurfTweaks"
 	},
 	"license": "MIT",
@@ -30,10 +30,10 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.17.3",
-		"minecraft": "~1.21.10",
-		"java": ">=21",
-		"fabric-api": "*",
-        "bibliomurf": ">=0.4.0-1.21.10"
+        "fabricloader": ">=0.18.4",
+        "minecraft": "~1.21.11",
+        "java": ">=21",
+        "fabric-api": "*",
+        "bibliomurf": ">=0.5.1-1.21.11"
 	}
 }

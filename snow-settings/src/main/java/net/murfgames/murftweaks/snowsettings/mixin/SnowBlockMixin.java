@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class SnowBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void inject_randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (!world.getGameRules().getBoolean(SnowHelper.DO_SNOW_MELTING))
+        if (!world.getGameRules().getValue(SnowHelper.DO_SNOW_MELTING))
             ci.cancel();
     }
 

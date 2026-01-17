@@ -4,11 +4,11 @@
 	"version": "${version}",
 	"name": "Advanced Snow Settings",
 	"description": "Adds additional settings for falling snow, e.g which blocks they can fall on and if snow can melt.",
-	"authors": [
-		"MurfGames"
-	],
-	"contact": {
-		"homepage": "https://murfgames.itch.io/",
+    "authors": [
+      "Lloyd Archer (Murf Games)"
+    ],
+    "contact": {
+      "homepage": "http://murfgames.co.uk/",
 		"sources": "https://github.com/mrflappi/MurfTweaks"
 	},
 	"license": "MIT",
@@ -30,10 +30,10 @@
         }
 	],
 	"depends": {
-		"fabricloader": ">=0.17.3",
-		"minecraft": "~1.21.10",
-		"java": ">=21",
-		"fabric-api": "*",
-        "bibliomurf": ">=0.4.0-1.21.10"
+        "fabricloader": ">=0.18.4",
+        "minecraft": "~1.21.11",
+        "java": ">=21",
+        "fabric-api": "*",
+        "bibliomurf": ">=0.5.1-1.21.11"
 	}
 }
