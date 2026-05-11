@@ -31,6 +31,6 @@ public class SnowSettingsModule implements ModInitializer, PreLaunchEntrypoint, 
 
     @Override
     public String getVersion() {
-        return "0.1.2";
+        return "0.2.0";
     }
 }

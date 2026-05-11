@@ -1,31 +1,31 @@
 {
 	"schemaVersion": 1,
-	"id": "snow-settings",
+	"id": "path-under",
 	"version": "${version}",
-	"name": "Advanced Snow Settings",
-	"description": "Adds additional settings for falling snow, e.g which blocks they can fall on and if snow can melt.",
+	"name": "Path Under Replaceables",
+	"description": "Allows the player to place paths underneath replaceable blocks e.g. snow or grass",
     "authors": [
       "Lloyd Archer (Murf Games)"
     ],
     "contact": {
-      "homepage": "http://murfgames.co.uk/",
+      "homepage": "http://luhloyda.co.uk/",
 		"sources": "https://github.com/mrflappi/MurfTweaks"
 	},
 	"license": "MIT",
-	"icon": "assets/murf-tweaks/icons/snow-settings.png",
+	"icon": "assets/murf-tweaks/icons/path-under.png",
 	"environment": "*",
 	"entrypoints": {
         "main": [
-          "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"
+          "net.murfgames.murftweaks.pathunder.PathUnderModule"
         ],
 		"preLaunch": [
-          "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"
+          "net.murfgames.murftweaks.pathunder.PathUnderModule"
         ]
     },
 	"mixins": [
-        "snow-settings.mixins.json",
+        "path-under.mixins.json",
         {
-          "config": "snow-settings.client.mixins.json",
+          "config": "path-under.client.mixins.json",
           "environment": "client"
         }
 	],

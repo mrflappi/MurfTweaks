@@ -1,3 +1,5 @@
+import net.fabricmc.loom.task.GenerateSourcesTask
+
 plugins {
     id "fabric-loom" version "${loom_version}" apply false
     id "maven-publish"
@@ -92,5 +94,16 @@ subprojects {
             // The repositories here will be used for publishing your artifact, not for
             // retrieving dependencies.
         }
+    }
+}
+
+def genSourceTasks = subprojects.collectMany {
+    it.tasks.withType(GenerateSourcesTask)
+}
+
+// Chain them sequentially: Task B runs after Task A, Task C after Task B, etc.
+genSourceTasks.indexed().each { index, task ->
+    if (index > 0) {
+        task.mustRunAfter(genSourceTasks[index - 1])
     }
 }

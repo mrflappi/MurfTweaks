@@ -1,0 +1,28 @@
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "path-under" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+configurations {
+    namedElements {
+        canBeConsumed = true
+        canBeResolved = false
+        extendsFrom configurations.implementation
+    }
+    clientNamedElements {
+        canBeConsumed = true
+        canBeResolved = false
+        extendsFrom configurations.implementation
+    }
+}
+
+artifacts {
+    namedElements jar
+    clientNamedElements jar
+}

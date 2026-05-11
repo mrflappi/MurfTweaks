@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.murfgames.murftweaks.pathunder.mixin.client",
+  "refmap": "client-path-under-refmap.json",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ItemStackMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ]
+}

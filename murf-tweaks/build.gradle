@@ -1,5 +1,6 @@
 evaluationDependsOn(":persistent-enchantment")
 evaluationDependsOn(":snow-settings")
+evaluationDependsOn(":path-under")
 
 fabricApi {
     configureDataGeneration {
@@ -13,10 +14,10 @@ import groovy.json.JsonOutput
 tasks.register('modifyJson') {
     doNotTrackState("Modifies JSON in build directory after resources are copied")
 
-    def mainEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"]
+    def mainEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule", "net.murfgames.murftweaks.pathunder.PathUnderModule"]
     def clientEntryPoints = []
-    def preLaunchEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule"]
-    def mixins = ["persistent-enchantment", "snow-settings"]
+    def preLaunchEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule", "net.murfgames.murftweaks.pathunder.PathUnderModule"]
+    def mixins = ["persistent-enchantment", "snow-settings", "path-under"]
     doLast {
         def fabricModJson = file("$buildDir/resources/main/fabric.mod.json")
 
@@ -79,6 +80,13 @@ loom {
         from(project(":snow-settings").sourceSets.client.output) {
             exclude("fabric.mod.json")
         }
+
+        from(project(":path-under").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":path-under").sourceSets.client.output) {
+            exclude("fabric.mod.json")
+        }
     }
 }
 
@@ -89,6 +97,9 @@ sourceSets {
 
         compileClasspath += project(":snow-settings").sourceSets.main.output
         runtimeClasspath += project(":snow-settings").sourceSets.main.output
+
+        compileClasspath += project(":path-under").sourceSets.main.output
+        runtimeClasspath += project(":path-under").sourceSets.main.output
     }
     client {
         compileClasspath += project(":persistent-enchantment").sourceSets.main.output
@@ -100,10 +111,16 @@ sourceSets {
         runtimeClasspath += project(":snow-settings").sourceSets.main.output
         compileClasspath += project(":snow-settings").sourceSets.client.output
         runtimeClasspath += project(":snow-settings").sourceSets.client.output
+
+        compileClasspath += project(":path-under").sourceSets.main.output
+        runtimeClasspath += project(":path-under").sourceSets.main.output
+        compileClasspath += project(":path-under").sourceSets.client.output
+        runtimeClasspath += project(":path-under").sourceSets.client.output
     }
 }
 
 dependencies {
     implementation project(path: ":persistent-enchantment", configuration: "namedElements")
     implementation project(path: ":snow-settings", configuration: "namedElements")
+    implementation project(path: ":path-under", configuration: "namedElements")
 }
