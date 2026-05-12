@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "net.murfgames.murftweaks.mixin",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
   ],
   "injectors": {

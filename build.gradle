@@ -1,13 +1,13 @@
 import net.fabricmc.loom.task.GenerateSourcesTask
 
 plugins {
-    id "fabric-loom" version "${loom_version}" apply false
+    id "net.fabricmc.fabric-loom" version "${loom_version}" apply false
     id "maven-publish"
 }
 
 allprojects {
     group = property("maven_group")
-    version = property("mod_version")
+    version = property("mod_version") + "_" + property("minecraft_version")
 
     repositories {
         mavenCentral()
@@ -17,7 +17,7 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: "fabric-loom"
+    apply plugin: "net.fabricmc.fabric-loom"
     apply plugin: "maven-publish"
 
     base {
@@ -40,17 +40,16 @@ subprojects {
     dependencies {
         // To change the versions see the gradle.properties file
         minecraft "com.mojang:minecraft:${project.minecraft_version}"
-        mappings loom.officialMojangMappings()
-        modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+        implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
         // Fabric API. This is technically optional, but you probably want it anyway.
-        modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+        implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-        modImplementation "com.github.mrflappi:BiblioMurf:${project.bibliomurf_version}"
+        implementation "com.github.mrflappi:BiblioMurf:${project.bibliomurf_version}"
     }
 
     processResources {
-        inputs.property "version", project.version
+        inputs.property "version", project.mod_version
 
         filesMatching("fabric.mod.json") {
             expand "version": inputs.properties.version
@@ -63,12 +62,12 @@ subprojects {
         // If you remove this line, sources will not be generated.
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 21
+        it.options.release = 25
     }
 
     jar {

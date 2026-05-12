@@ -2,7 +2,7 @@
   "required": true,
   "package": "net.murfgames.murftweaks.snowsettings.mixin",
   "refmap": "snow-settings-refmap.json",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
     "ServerWorldMixin",
     "SnowBlockMixin"

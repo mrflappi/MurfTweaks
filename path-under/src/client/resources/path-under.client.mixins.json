@@ -2,7 +2,7 @@
   "required": true,
   "package": "net.murfgames.murftweaks.pathunder.mixin.client",
   "refmap": "client-path-under-refmap.json",
-  "compatibilityLevel": "JAVA_21",
+  "compatibilityLevel": "JAVA_25",
   "client": [
     "ShovelItemMixin"
   ],
