@@ -4,7 +4,7 @@
   "refmap": "client-path-under-refmap.json",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "ItemStackMixin"
+    "ShovelItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

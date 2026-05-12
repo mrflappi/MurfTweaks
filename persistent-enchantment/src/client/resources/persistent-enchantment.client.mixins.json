@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "LivingEntityMixin",
-    "EquippableComponentMixin"
+    "EquippableMixin"
   ],
   "injectors": {
     "defaultRequire": 1

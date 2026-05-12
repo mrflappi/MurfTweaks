@@ -1,6 +1,4 @@
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         "path-under" {
             sourceSet sourceSets.main

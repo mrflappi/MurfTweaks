@@ -1,6 +1,4 @@
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         "persistent-enchantment" {
             sourceSet sourceSets.main

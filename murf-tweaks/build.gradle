@@ -54,8 +54,6 @@ tasks.register('modifyJson') {
 }
 
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         "murf-tweaks" {
             sourceSet sourceSets.main

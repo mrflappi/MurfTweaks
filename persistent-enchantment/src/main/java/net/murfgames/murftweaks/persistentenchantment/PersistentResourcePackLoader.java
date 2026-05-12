@@ -1,11 +1,11 @@
 package net.murfgames.murftweaks.persistentenchantment;
 
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 
 public class PersistentResourcePackLoader {
     public static void register() {
@@ -18,18 +18,18 @@ public class PersistentResourcePackLoader {
     }
 
     private static void loadResourcePacks(ModContainer container) {
-        ResourceManagerHelper.registerBuiltinResourcePack(
-                Identifier.of(container.getMetadata().getId(), "persistent_add"),
+        ResourceLoader.registerBuiltinPack(
+                Identifier.fromNamespaceAndPath(container.getMetadata().getId(), "persistent_add"),
                 container,
-                Text.of("Add Persistent Enchantment"),
-                ResourcePackActivationType.NORMAL
+                Component.nullToEmpty("Add Persistent Enchantment"),
+                PackActivationType.NORMAL
         );
 
-        ResourceManagerHelper.registerBuiltinResourcePack(
-                Identifier.of(container.getMetadata().getId(), "persistent_override"),
+        ResourceLoader.registerBuiltinPack(
+                Identifier.fromNamespaceAndPath(container.getMetadata().getId(), "persistent_override"),
                 container,
-                Text.of("Mending to Persistent Enchantment"),
-                ResourcePackActivationType.DEFAULT_ENABLED
+                Component.nullToEmpty("Mending to Persistent Enchantment"),
+                PackActivationType.DEFAULT_ENABLED
         );
     }
 }

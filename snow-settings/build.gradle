@@ -1,6 +1,4 @@
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         "snow-settings" {
             sourceSet sourceSets.main
