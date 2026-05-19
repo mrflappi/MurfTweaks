@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "copper-oxidiser",
+	"version": "${version}",
+	"name": "Instant Copper Oxidiser",
+	"description": "Allows the player to oxidise copper blocks isntantly with a flint and steel",
+    "authors": [
+      "Lloyd Archer (Murf Games)"
+    ],
+    "contact": {
+      "homepage": "http://luhloyda.co.uk/",
+		"sources": "https://github.com/mrflappi/MurfTweaks"
+	},
+	"license": "MIT",
+	"icon": "assets/murf-tweaks/icons/copper-oxidiser.png",
+	"environment": "*",
+	"entrypoints": {
+        "main": [
+          "net.murfgames.murftweaks.copperoxidiser.CopperOxidiserModule"
+        ],
+		"preLaunch": [
+          "net.murfgames.murftweaks.copperoxidiser.CopperOxidiserModule"
+        ]
+    },
+	"mixins": [
+        "copper-oxidiser.mixins.json",
+        {
+          "config": "copper-oxidiser.client.mixins.json",
+          "environment": "client"
+        }
+	],
+	"depends": {
+        "fabricloader": ">=0.19.2",
+        "minecraft": "~26.1.2",
+        "java": ">=25",
+        "fabric-api": "*",
+        "bibliomurf": ">=0.5.4-26.1.2"
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.murfgames.murftweaks.copperoxidiser.mixin.client",
+  "refmap": "client-copper-oxidiser-refmap.json",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ]
+}

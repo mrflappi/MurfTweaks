@@ -6,14 +6,18 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.murfgames.bibliomurf.handshake.ServerHandshake;
 import net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule;
+import net.murfgames.murftweaks.persistentenchantment.PersistentHelper;
 import net.murfgames.murftweaks.persistentenchantment.mixinhelper.ItemStackExtender;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Objects;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -39,8 +43,8 @@ public abstract class LivingEntityMixin {
             )
     )
     private boolean modifyExpressionValue_damage(boolean original, ServerLevel world, DamageSource source, float amount) {
-        if (!world.isClientSide() && source.getWeaponItem() != null && !source.getWeaponItem().isEmpty()) {
-            if (source.getEntity() instanceof ServerPlayer serverPlayer && serverPlayer.gameMode().isCreative()) {
+        if (PersistentHelper.clientCheck(world) && source.getWeaponItem() != null && !source.getWeaponItem().isEmpty()) {
+            if (source.getEntity() instanceof Player player && Objects.requireNonNull(player.gameMode()).isCreative()) {
                 return original;
             }
 

@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 public class MurfTweaks implements ModInitializer, PreLaunchEntrypoint, BiblioModule {
     public static final String MOD_ID = "murf-tweaks";
+    public static final String MOD_VERSION = "0.3.0";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final Identifier MODULE_ID = Identifier.fromNamespaceAndPath(MOD_ID, "package");
 
@@ -32,6 +33,6 @@ public class MurfTweaks implements ModInitializer, PreLaunchEntrypoint, BiblioMo
 
     @Override
     public String getVersion() {
-        return "0.2.0";
+        return MOD_VERSION;
     }
 }

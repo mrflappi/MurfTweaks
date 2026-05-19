@@ -11,6 +11,7 @@ public class PathUnderModule implements ModInitializer, PreLaunchEntrypoint, Bib
 
     public static final String PACKAGE_ID = "murf-tweaks";
     public static final String MOD_ID = "path-under";
+    public static final String MOD_VERSION = "0.3.0";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final Identifier MODULE_ID = Identifier.fromNamespaceAndPath(PACKAGE_ID, MOD_ID);
 
@@ -31,6 +32,6 @@ public class PathUnderModule implements ModInitializer, PreLaunchEntrypoint, Bib
 
     @Override
     public String getVersion() {
-        return "0.2.0";
+        return MOD_VERSION;
     }
 }

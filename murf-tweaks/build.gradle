@@ -1,6 +1,7 @@
 evaluationDependsOn(":persistent-enchantment")
 evaluationDependsOn(":snow-settings")
 evaluationDependsOn(":path-under")
+evaluationDependsOn(":copper-oxidiser")
 
 fabricApi {
     configureDataGeneration {
@@ -14,10 +15,18 @@ import groovy.json.JsonOutput
 tasks.register('modifyJson') {
     doNotTrackState("Modifies JSON in build directory after resources are copied")
 
-    def mainEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule", "net.murfgames.murftweaks.pathunder.PathUnderModule"]
+    def mainEntryPoints = [
+            "net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule",
+            "net.murfgames.murftweaks.snowsettings.SnowSettingsModule",
+            "net.murfgames.murftweaks.pathunder.PathUnderModule",
+            "net.murfgames.murftweaks.copperoxidiser.CopperOxidiserModule"]
     def clientEntryPoints = []
-    def preLaunchEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule", "net.murfgames.murftweaks.snowsettings.SnowSettingsModule", "net.murfgames.murftweaks.pathunder.PathUnderModule"]
-    def mixins = ["persistent-enchantment", "snow-settings", "path-under"]
+    def preLaunchEntryPoints = ["net.murfgames.murftweaks.persistentenchantment.PersistentEnchantmentModule",
+                                "net.murfgames.murftweaks.snowsettings.SnowSettingsModule",
+                                "net.murfgames.murftweaks.pathunder.PathUnderModule",
+                                "net.murfgames.murftweaks.copperoxidiser.CopperOxidiserModule"]
+
+    def mixins = ["persistent-enchantment", "snow-settings", "path-under", "copper-oxidiser"]
     doLast {
         def fabricModJson = file("$buildDir/resources/main/fabric.mod.json")
 
@@ -85,6 +94,13 @@ loom {
         from(project(":path-under").sourceSets.client.output) {
             exclude("fabric.mod.json")
         }
+
+        from(project(":copper-oxidiser").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":copper-oxidiser").sourceSets.client.output) {
+            exclude("fabric.mod.json")
+        }
     }
 }
 
@@ -98,6 +114,9 @@ sourceSets {
 
         compileClasspath += project(":path-under").sourceSets.main.output
         runtimeClasspath += project(":path-under").sourceSets.main.output
+
+        compileClasspath += project(":copper-oxidiser").sourceSets.main.output
+        runtimeClasspath += project(":copper-oxidiser").sourceSets.main.output
     }
     client {
         compileClasspath += project(":persistent-enchantment").sourceSets.main.output
@@ -114,6 +133,11 @@ sourceSets {
         runtimeClasspath += project(":path-under").sourceSets.main.output
         compileClasspath += project(":path-under").sourceSets.client.output
         runtimeClasspath += project(":path-under").sourceSets.client.output
+
+        compileClasspath += project(":copper-oxidiser").sourceSets.main.output
+        runtimeClasspath += project(":copper-oxidiser").sourceSets.main.output
+        compileClasspath += project(":copper-oxidiser").sourceSets.client.output
+        runtimeClasspath += project(":copper-oxidiser").sourceSets.client.output
     }
 }
 
@@ -121,4 +145,5 @@ dependencies {
     implementation project(path: ":persistent-enchantment", configuration: "namedElements")
     implementation project(path: ":snow-settings", configuration: "namedElements")
     implementation project(path: ":path-under", configuration: "namedElements")
+    implementation project(path: ":copper-oxidiser", configuration: "namedElements")
 }

@@ -52,7 +52,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
         if (world != null && slot != null) {
             ItemStack stack = (ItemStack) (Object) this;
 
-            if (!world.isClientSide() && murf_tweaks$isPersistentBroken() && entity instanceof LivingEntity livingEntity && slot.isArmor()) {
+            if (PersistentHelper.clientCheck(world) && murf_tweaks$isPersistentBroken() && entity instanceof LivingEntity livingEntity && slot.isArmor()) {
                 ItemStack newStack = stack.copyAndClear();
                 livingEntity.handleExtraItemsCreatedOnUse(newStack);
 
@@ -76,7 +76,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     // Set item damage to minimum with persistent enchantment
     @Inject(method = "hurtAndBreak(ILnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/entity/EquipmentSlot;)V", at = @At("TAIL"))
     private void inject_damage(int amount, LivingEntity entity, EquipmentSlot slot, CallbackInfo ci) {
-        if (!entity.level().isClientSide()) {
+        if (PersistentHelper.clientCheck(entity.level())) {
             ItemStack stack = (ItemStack) (Object) this;
             if (murf_tweaks$isPersistentBroken() && stack.getDamageValue() > stack.getMaxDamage() - PersistentHelper.MIN_DURABILITY) {
                 stack.setDamageValue(stack.getMaxDamage() - PersistentHelper.MIN_DURABILITY);
@@ -87,7 +87,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     // Prevent broken item from being used with persistent enchantment
     @Inject(method = "use(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;", at = @At("HEAD"), cancellable = true)
     private void inject_use(Level world, Player user, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!world.isClientSide() && murf_tweaks$isPersistentBroken() && Objects.requireNonNull(user.gameMode()).isSurvival()) {
+        if (PersistentHelper.clientCheck(world) && murf_tweaks$isPersistentBroken() && Objects.requireNonNull(user.gameMode()).isSurvival()) {
             cir.setReturnValue(InteractionResult.PASS);
             syncInventory(user);
         }
@@ -96,7 +96,7 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     // Prevent broken item from being used on a block with persistent enchantment
     @Inject(method = "useOn", at = @At("HEAD"), cancellable = true)
     private void inject_useOnBlock(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!context.getLevel().isClientSide() && murf_tweaks$isPersistentBroken()) {
+        if (PersistentHelper.clientCheck(context.getLevel()) && murf_tweaks$isPersistentBroken()) {
             if (context.getPlayer() == null || Objects.requireNonNull(context.getPlayer().gameMode()).isSurvival())
                 cir.setReturnValue(InteractionResult.PASS);
         }
@@ -105,14 +105,14 @@ public abstract class ItemStackMixin implements ItemStackExtender {
     // Prevent broken item from being used on an entity with persistent enchantment
     @Inject(method = "interactLivingEntity", at = @At("HEAD"), cancellable = true)
     private void inject_useOnEntity(Player user, LivingEntity entity, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        if (!entity.level().isClientSide() && murf_tweaks$isPersistentBroken()  && Objects.requireNonNull(user.gameMode()).isSurvival())
+        if (PersistentHelper.clientCheck(entity.level()) && murf_tweaks$isPersistentBroken()  && Objects.requireNonNull(user.gameMode()).isSurvival())
             cir.setReturnValue(InteractionResult.PASS);
     }
 
     // Prevent broken item from mining with persistent enchantment
     @Inject(method = "canDestroyBlock", at = @At("HEAD"), cancellable = true)
     private void inject_canMine(BlockState state, Level world, BlockPos pos, Player player, CallbackInfoReturnable<Boolean> cir) {
-        if (!world.isClientSide() && murf_tweaks$isPersistentBroken()  && Objects.requireNonNull(player.gameMode()).isSurvival())
+        if (PersistentHelper.clientCheck(world) && murf_tweaks$isPersistentBroken()  && Objects.requireNonNull(player.gameMode()).isSurvival())
             cir.setReturnValue(false);
     }
 }

@@ -6,6 +6,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+import net.murfgames.bibliomurf.handshake.ClientHandshake;
 
 public abstract class PersistentHelper {
     public static final int MIN_DURABILITY = 1;
@@ -24,5 +26,9 @@ public abstract class PersistentHelper {
                         
                 )
         );
+    }
+
+    public static boolean clientCheck(Level level) {
+        return (!level.isClientSide()) || ClientHandshake.serverHasModule(PersistentEnchantmentModule.MODULE_ID);
     }
 }
