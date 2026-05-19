@@ -12,6 +12,8 @@ There are only two mods for now, but stay tuned for updates! :)
 
 [Check out my own games on my itch page!](https://murfgames.itch.io/)
 
+[![Nightmaze](https://nightmaze.co.uk/assets/wishlistbanner.png)](https://store.steampowered.com/app/4584550/Nightmaze/)
+
 _I'm not fluent in Java or Gradle,_ <br>
 _My code is probably really terrible._ <br>
 _Please don't judge my hodge-podge slop,_ <br>
