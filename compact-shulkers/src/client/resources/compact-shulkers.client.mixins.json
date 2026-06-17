@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.murfgames.murftweaks.compactshulkers.mixin.client",
+  "refmap": "client-compact-shulkers-refmap.json",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+  ]
+}

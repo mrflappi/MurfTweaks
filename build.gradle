@@ -49,6 +49,8 @@ subprojects {
     }
 
     processResources {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
         inputs.property "version", project.mod_version
 
         filesMatching("fabric.mod.json") {
@@ -71,6 +73,8 @@ subprojects {
     }
 
     jar {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        
         inputs.property "archivesName", project.base.archivesName
 
         from("LICENSE") {

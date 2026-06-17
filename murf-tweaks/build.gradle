@@ -2,6 +2,7 @@ evaluationDependsOn(":persistent-enchantment")
 evaluationDependsOn(":snow-settings")
 evaluationDependsOn(":path-under")
 evaluationDependsOn(":copper-oxidiser")
+evaluationDependsOn(":compact-shulkers")
 
 fabricApi {
     configureDataGeneration {
@@ -101,6 +102,13 @@ loom {
         from(project(":copper-oxidiser").sourceSets.client.output) {
             exclude("fabric.mod.json")
         }
+
+        from(project(":compact-shulkers").sourceSets.main.output) {
+            exclude("fabric.mod.json")
+        }
+        from(project(":compact-shulkers").sourceSets.client.output) {
+            exclude("fabric.mod.json")
+        }
     }
 }
 
@@ -117,6 +125,9 @@ sourceSets {
 
         compileClasspath += project(":copper-oxidiser").sourceSets.main.output
         runtimeClasspath += project(":copper-oxidiser").sourceSets.main.output
+
+        compileClasspath += project(":compact-shulkers").sourceSets.main.output
+        runtimeClasspath += project(":compact-shulkers").sourceSets.main.output
     }
     client {
         compileClasspath += project(":persistent-enchantment").sourceSets.main.output
@@ -138,6 +149,11 @@ sourceSets {
         runtimeClasspath += project(":copper-oxidiser").sourceSets.main.output
         compileClasspath += project(":copper-oxidiser").sourceSets.client.output
         runtimeClasspath += project(":copper-oxidiser").sourceSets.client.output
+
+        compileClasspath += project(":compact-shulkers").sourceSets.main.output
+        runtimeClasspath += project(":compact-shulkers").sourceSets.main.output
+        compileClasspath += project(":compact-shulkers").sourceSets.client.output
+        runtimeClasspath += project(":compact-shulkers").sourceSets.client.output
     }
 }
 
@@ -146,4 +162,5 @@ dependencies {
     implementation project(path: ":snow-settings", configuration: "namedElements")
     implementation project(path: ":path-under", configuration: "namedElements")
     implementation project(path: ":copper-oxidiser", configuration: "namedElements")
+    implementation project(path: ":compact-shulkers", configuration: "namedElements")
 }

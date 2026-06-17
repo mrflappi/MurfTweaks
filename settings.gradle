@@ -15,4 +15,5 @@ include("murf-tweaks")
 include("persistent-enchantment")
 include("snow-settings")
 include("path-under")
-include 'copper-oxidiser'
+include("copper-oxidiser")
+include('compact-shulkers')
