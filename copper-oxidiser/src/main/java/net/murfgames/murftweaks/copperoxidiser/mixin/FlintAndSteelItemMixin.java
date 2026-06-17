@@ -2,7 +2,8 @@ package net.murfgames.murftweaks.copperoxidiser.mixin;
 
 import com.google.common.collect.BiMap;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
